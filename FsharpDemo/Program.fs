@@ -14,6 +14,16 @@ let cond_stuff() =
         printfn "Go to dam %i" grade
     else
         printfn "Go to dam"
+
+
+    let grade : string = 
+        match age with
+        | age when age < 5 -> "Preschool"
+        | 5 -> "Kin"
+        | age when ((age > 5) && (age <= 18)) -> (age - 5).ToString()
+        | _ -> "College"
+
+    printfn "Grade : %s" grade
    
 [<EntryPoint>]
 let main argv =
