@@ -2,29 +2,34 @@
 
 open System
 
-let seq_stuff() = 
-    let seq1 = seq { 1 .. 100 }
-    let seq2 = seq { 0 .. 2 .. 100 }
-    let seq3 = seq { 50 .. 1}
+let map_stuff() = 
+    let customers = 
+        Map.empty.
+            Add("Bob", 100.23).
+            Add("Bob2", 10.23)
 
-    printfn "%A" seq1
-    printfn "%A" seq2
-    printfn "%A" seq3
+    printfn "Customers %i" customers.Count
 
-    Seq.toList seq2|> List.iter (printfn "Num : %i")
+    let cust = customers.TryFind "Bob"
+    match cust with
+    | Some x -> printf "Balance : %.2f" x
+    | None -> printfn "Not found"
 
-    let is_prime n =
-        let rec check i =
-            i > n/2 || (n % i <> 0 && check (i + 1))
-        check 2
+    printfn "Customers : %A" customers
 
-    let prime_seq = seq { for n in 1..500 do if is_prime n then yield n}
-    printfn "%A" prime_seq
-   
+    printfn "Bobs balance : %.2f" customers.["Bob"]
+
+    if customers.ContainsKey "Bob" then
+        printfn "Bob found"
+    
+    let cust2 = Map.remove "Bob" customers
+
+    printfn "Count : %i" cust2.Count
+
 [<EntryPoint>]
 let main argv =
     printfn "Hello World from F#!"
-    seq_stuff()
+    map_stuff()
     0 // return an integer exit code
 
 
