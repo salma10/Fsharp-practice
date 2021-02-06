@@ -1,27 +1,34 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System
-type Rectangle = struct
-    val Length : float
-    val Width : float
+type Animal = class
+    val Name : string
+    val Height : float
+    val Weight : float
 
-    new (length, width) =
-        {Length = length; Width = width}
+    new (name, height, weight) =
+        {Name = name; Height = height; Weight =  weight}
+    member x.Run =
+        printfn "%s Runs" x.Name
 end
 
-let exp_stuff() = 
-    let area( shape : Rectangle) =
-        shape.Width * shape.Length
+type Dog (name, height, weight) = 
+    inherit Animal(name, height, weight)
+   
+    member x.Bark =
+        printfn "%s Barks" x.Name
 
-    let react = new Rectangle(5.0, 6.0)
-
-    let rect_area = area react
-    printfn "Area : %.2f" rect_area
+let class_stuff() = 
+    let spot = new Animal ("Spot", 9.0, 19.0)
+    spot.Run
+    let boer = new Dog ("Boer", 9.0, 19.0)
+    boer.Run
+    boer.Bark
 
 [<EntryPoint>]
 let main argv =
     printfn "Hello World from F#!"
-    exp_stuff()
+    class_stuff()
     0 // return an integer exit code
 
 
