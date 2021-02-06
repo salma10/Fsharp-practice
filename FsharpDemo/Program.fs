@@ -2,33 +2,25 @@
 
 open System
 
-let cond_stuff() = 
-    let age = 8
+let list_stuff() = 
+    let list1 = [1;2;3;4]
 
-    if age < 5 then
-        printfn "Pre "
-    elif age = 5 then
-        printfn "Kn"
-    elif (age > 5) && (age <= 18) then
-        let grade = age - 5
-        printfn "Go to dam %i" grade
-    else
-        printfn "Go to dam"
+    list1 |> List.iter (printfn "Num : %i")
 
+    printfn "%A" list1
 
-    let grade : string = 
-        match age with
-        | age when age < 5 -> "Preschool"
-        | 5 -> "Kin"
-        | age when ((age > 5) && (age <= 18)) -> (age - 5).ToString()
-        | _ -> "College"
+    let list2 = 5::6::7::8::[]
+    printfn "%A" list2
 
-    printfn "Grade : %s" grade
+    let list3 = [1..5]
+    let list4 = ['a'..'g']
+    printfn "%A" list3
+    printfn "%A" list4
    
 [<EntryPoint>]
 let main argv =
     printfn "Hello World from F#!"
-    cond_stuff()
+    list_stuff()
     0 // return an integer exit code
 
 
