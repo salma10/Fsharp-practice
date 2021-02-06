@@ -1,27 +1,24 @@
 ﻿// Learn more about F# at http://fsharp.org
 
 open System
-type emotion = 
-| joy =0
-| fear = 1
-| anger = 2
-let option_stuff() = 
-    let divide x y =
-        match y with
-        | 0 -> None
-        | _ -> Some(x/y)
 
-    if(divide 5 0).IsSome then
-        printfn "5 / 0 = %A" ((divide 5 0).Value)
-    elif (divide 5 0).IsNone then
-        printfn "Cant divide by zero"
-    else
-        printfn "Something happened"
+let tuple_stuff() = 
+   let avg(x, y, z) : float = 
+    let sum = x + y + z
+    sum / 4.0
+   
+   printfn "Avg : %f" (avg (1.0, 2.0, 3.0))
+
+   let my_data = ("derek", 42, 6.24)
+
+   let (name, age, _) = my_data
+
+   printfn "Name : %s" name
    
 [<EntryPoint>]
 let main argv =
     printfn "Hello World from F#!"
-    option_stuff()
+    tuple_stuff()
     0 // return an integer exit code
 
 
