@@ -5,18 +5,23 @@ type emotion =
 | joy =0
 | fear = 1
 | anger = 2
-let enum_stuff() = 
-  let my_feeling = emotion.joy
+let option_stuff() = 
+    let divide x y =
+        match y with
+        | 0 -> None
+        | _ -> Some(x/y)
 
-  match my_feeling with
-  | joy -> printfn "Joy"
-  | fear -> printfn "fear"
-  | anger -> printfn "Angry"
+    if(divide 5 0).IsSome then
+        printfn "5 / 0 = %A" ((divide 5 0).Value)
+    elif (divide 5 0).IsNone then
+        printfn "Cant divide by zero"
+    else
+        printfn "Something happened"
    
 [<EntryPoint>]
 let main argv =
     printfn "Hello World from F#!"
-    enum_stuff()
+    option_stuff()
     0 // return an integer exit code
 
 
