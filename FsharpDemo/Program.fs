@@ -28,6 +28,20 @@ let list_stuff() =
 
     let list8 = [for a in 1..5 do yield! [a..a+2]]
     printfn "%A" list8
+
+    printfn "Length : %i" list8.Length
+    printfn "Empty : %b" list8.IsEmpty
+    printfn "Index 2 : %i" (list8.Item(2))
+    printfn "Head : %i" (list8.Head)
+    printfn "Tail : %A" (list8.Tail)
+
+    let list9 = list3 |> List.filter (fun i -> i % 2 = 0)
+    let list10 = list9 |> List.map (fun i -> ( i * i ))
+    printfn "list9 : %A" list9
+    printfn "list10 : %A" list10
+    printfn "Sort : %A" (List.sort ([5;4;3]))
+    printfn "Sum : %i" (List.fold (fun sum elem -> sum + elem) 0 [1;2;3])
+
    
 [<EntryPoint>]
 let main argv =
